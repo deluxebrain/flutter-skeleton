@@ -1,0 +1,4 @@
+X_APP_NAME=FlutterSkeleton
+X_BUNDLE_NAME=flutterskeleton
+X_BUNDLE_DISPLAY_NAME=FlutterSkeleton
+X_BUNDLE_IDENTIFIER=com.deluxebrain.$(X_BUNDLE_NAME)

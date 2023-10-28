@@ -1,0 +1,14 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-prod.xcconfig"
+#include "Generated.xcconfig"
+#include "common.xcconfig"
+
+X_FLAVOR_NAME=prod
+X_FLAVOR_BUNDLE_SUFFIX=
+
+X_FLAVOR_APP_NAME=$(X_APP_NAME)
+X_FLAVOR_BUNDLE_DISPLAY_NAME=$(X_BUNDLE_DISPLAY_NAME)
+X_FLAVOR_BUNDLE_ID=$(X_BUNDLE_IDENTIFIER)$(X_FLAVOR_BUNDLE_SUFFIX)
+
+X_FLAVOR_APP_ICON=AppIcon-$(X_FLAVOR_NAME)
+
+FLUTTER_TARGET=lib/main_$(X_FLAVOR_NAME).dart

@@ -1,0 +1,20 @@
+default_platform(:ios)
+
+platform :ios do
+  lane :development do
+    build_app(
+      scheme: "dev",
+      configuration: "Debug-dev",
+      output_directory: "../build/fastlane/ios")
+  end
+
+  lane :release do
+    disable_automatic_code_signing
+    build_app(
+      scheme: "prod",
+      configuration: "Release-prod",
+      output_directory: "../build/fastlane/ios")
+    enable_automatic_code_signing
+    upload_to_testflight
+  end
+end

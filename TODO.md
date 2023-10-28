@@ -1,0 +1,34 @@
+# TODO
+
+- [x] Linting
+- [x] FlexColorScheme
+- [x] Google fonts
+- [x] Localization ( inc. hard coded )
+- [x] Error handlers
+- [] SharedPreferences
+- [] Settings
+- [] Routing
+- [] Adaptive scaffold
+- [x] Add flavors
+- [x] Document flavors
+- [x] Add firebase flavors
+- [x] Document firebase flavors
+- [] Set up repo security e.g. code and secret scanning
+- [x] Update README to not use my zsh_customer flutter extension scripts
+- [] Is cococods activesupport hack still required ?
+- [] Getting latest pre-release of dart pubs rather than hardcoding
+- [] Fastlane
+  - [x] Local build pipeline -no flavors
+  - [x] Local build with flavors
+  - [] Project version bumping ( pass version number to flutter build ? )
+  - [] Testflight ( staging version )
+  - [x] Documentation
+- [x] Document versioning
+- [x] Change assets/launcher_icon to assets/images
+- [x] Update Flutter.build
+- [x] Brew install fastlane
+- [] App constants
+- [] Move todo to GitHub issues
+- [] Bug list ( see docs/gotchas )
+- [] Use Capitalized flavor names ( e.g. Dev ) ?
+- [] Testflight

@@ -1,0 +1,6 @@
+{
+  "appTitle": "Flutter Skeleton",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
