@@ -10,7 +10,7 @@ import 'package:flutterskeleton/src/l10n/string_hardcoded.dart';
 
 Future<void> bootstrap(
   Future<FirebaseApp> Function() firebaseBuilder,
-  ProviderContainer Function() containerBuilder,
+  Future<ProviderContainer> Function() containerBuilder,
   FutureOr<Widget> Function() appBuilder,
 ) async {
   late ProviderContainer? container;
@@ -20,7 +20,7 @@ Future<void> bootstrap(
 
     await firebaseBuilder();
 
-    container = containerBuilder();
+    container = await containerBuilder();
 
     registerErrorHandlers(container!);
 

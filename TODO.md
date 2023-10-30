@@ -29,6 +29,7 @@
 - [x] Brew install fastlane
 - [] App constants
 - [] Move todo to GitHub issues
-- [] Bug list ( see docs/gotchas )
+- [] Move bug list to GitHub issues
+- [x] Bug list ( see docs/gotchas )
 - [] Use Capitalized flavor names ( e.g. Dev ) ?
 - [] Testflight
