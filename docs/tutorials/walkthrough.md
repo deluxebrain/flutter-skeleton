@@ -62,11 +62,6 @@ pod setup
 .vscode/
   launch.json
   settings.json
-assets/
-  images/
-    app-icon-dev.png
-    app-icon-stg.png
-    app-icon.png
 docs/ (*)
 lib/
   l10n/
@@ -76,9 +71,6 @@ scripts/
   configure-firebase
 .editorconfig
 .gitignore (*)
-flutter_launcher_icons-dev.yaml
-flutter_launcher_icons-prod.yaml
-flutter_launcher_icons-stg.yaml
 l10n.yaml
 pubspec.yaml*
 Makefile
@@ -147,7 +139,6 @@ Note: Bundle identifier will need to be globally unique
 flutter pub get
 flutter pub run build_runner build --delete-conflicting-outputs
 flutter gen-l10n
-flutter pub run flutter_launcher_icons
 flutter build ipa # --no-codesign if no apple developer account
 flutter build appbundle
 ```
@@ -202,6 +193,11 @@ TODO
 ## Copy over core application files
 
 ```text
+assets/
+  images/
+    app-icon-dev.png
+    app-icon-stg.png
+    app-icon.png
 lib/
   config/
     firebase/
@@ -227,6 +223,12 @@ lib/
   main_prod.dart
   main_stg.dart
   main.dart DELETE
+  flutter_launcher_icons-dev.yaml
+  flutter_launcher_icons-prod.yaml
+  flutter_launcher_icons-stg.yaml
+  flutter_native_splash-dev.yaml
+  flutter_native_splash-stg.yaml
+  flutter_native_splash-prod.yaml
 ```
 
 ## Add Android flavors
@@ -502,6 +504,12 @@ TODO
 
 ## Build app icons per flavor
 
+Uses the flutter_launcher_icons configuration files:
+
+- flutter_launcher_icons-dev.yaml
+- flutter_launcher_icons-stg.yaml
+- flutter_launcher_icons-prod.yaml
+
 ```sh
 flutter pub run flutter_launcher_icons
 ```
@@ -520,9 +528,84 @@ ios/
       AppIcon-{flavor}.appiconset
 ```
 
-Delete default app iconset:
+Add `X_FLAVOR_APP_ICON` to each of your flavor settings files:
+
+- Runner --> Flutter --> {flavor}.xcconfig
+
+E.g:
+
+dev.xcconfig:
+
+```xcconfig
+X_FLAVOR_APP_ICON=AppIcon-$(X_FLAVOR_NAME)
+```
+
+Update the xcode build settings to use the correct icon set:
+
+- Runner --> Targets --> Runner --> Build Settings --> Primary App Icon Set Name: AppIcon-{flavor}
+
+For some reason you also need to delete the original default icon set or flutter build complains that the app uses the default icons:
 
 - ios/Runner/Assets/xcassets/AppIcon.appiconset
+
+## Build launch screen per flavor
+
+Uses the flutter_native_splash configuration files:
+
+- flutter_native_splash-dev.yaml
+- flutter_native_splash-stg.yaml
+- flutter_native_splash-prod.yaml
+
+```sh
+dart run flutter_native_splash:create --flavors dev,stg,prod
+```
+
+The following files are created:
+
+```text
+android\
+  src\
+    dev\
+      res\
+    stg\
+      res\
+    prod\
+      res\
+ios\
+  Runner\
+    Base.lproj\
+      LaunchScreenDev.storyboard
+      LaunchScreenStg.storyboard
+      LaunchScreenProd.storyboard
+```
+
+Add the launch screen storyboards to xcode:
+
+- Runner --> Runner --> "Add Files to Runner..."
+  - ensure "Copy items if needed" is checked
+  - add to targets: Runner
+  - add all launch screen storyboards for your flavors:
+    - ios\Runner\Base.lproj\LaunchScreenDev.storyboard
+    - ios\Runner\Base.lproj\LaunchScreenStg.storyboard
+    - ios\Runner\Base.lproj\LaunchScreenProd.storyboard
+
+Configure your targets to use the launch screen story boards:
+
+Add `X_FLAVOR_LAUNCH_SCREEN` to each of your flavor settings files:
+
+- Runner --> Flutter --> {flavor}.xcconfig
+
+E.g:
+
+dev.xcconfig:
+
+```xcconfig
+# DO NOT INCLUDE .storyboard file extension
+X_FLAVOR_LAUNCH_SCREEN=LaunchScreenDev
+```
+
+- Runner --> Runner --> Info.plist:
+  - Launch screen interface file base name: $(X_FLAVOR_LAUNCH_SCREEN)
 
 ## Verify flavors will build
 

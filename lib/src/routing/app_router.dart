@@ -10,7 +10,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'app_router.g.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _counterNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "counter");
+final _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "home");
 final _settingsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "settings");
 
 enum AppRoute {
@@ -22,7 +22,7 @@ enum AppRoute {
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
   return GoRouter(
-      initialLocation: '/counter',
+      initialLocation: '/home',
       navigatorKey: _rootNavigatorKey,
       debugLogDiagnostics: true,
       routes: [
@@ -34,10 +34,10 @@ GoRouter goRouter(GoRouterRef ref) {
           },
           branches: [
             StatefulShellBranch(
-              navigatorKey: _counterNavigatorKey,
+              navigatorKey: _homeNavigatorKey,
               routes: [
                 GoRoute(
-                  path: '/counter',
+                  path: '/home',
                   name: AppRoute.counter.name,
                   pageBuilder: (context, state) => const NoTransitionPage(
                     child: HomeScreen(),

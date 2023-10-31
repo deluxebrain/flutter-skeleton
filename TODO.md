@@ -5,10 +5,10 @@
 - [x] Google fonts
 - [x] Localization ( inc. hard coded )
 - [x] Error handlers
-- [] SharedPreferences
-- [] Settings
-- [] Routing
-- [] Adaptive scaffold
+- [x] SharedPreferences
+- [x] Settings
+- [x] Routing
+- [x] Adaptive scaffold
 - [x] Add flavors
 - [x] Document flavors
 - [x] Add firebase flavors
@@ -33,3 +33,8 @@
 - [x] Bug list ( see docs/gotchas )
 - [] Use Capitalized flavor names ( e.g. Dev ) ?
 - [] Testflight
+- [] Move router destinations to data and build dynamically
+- [] Move adaptive scaffold breakpoints to configuration
+- [x] App launcher screen
+- [] Script to delete app (flavor) from device
+- [] Look into [device preview](https://pub.dev/packages/device_preview)

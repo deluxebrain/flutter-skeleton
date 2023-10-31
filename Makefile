@@ -25,5 +25,6 @@ gen:
 l10n:
 	flutter gen-l10n
 
-icons:
+assets:
 	flutter pub run flutter_launcher_icons
+	dart run flutter_native_splash:create --flavors dev,stg,prod

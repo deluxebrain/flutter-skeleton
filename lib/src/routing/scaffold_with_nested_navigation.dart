@@ -59,7 +59,7 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
           NavigationDestination(
             icon: const Icon(Icons.home_outlined),
             selectedIcon: const Icon(Icons.home),
-            label: 'Counter'.hardcoded,
+            label: 'Home'.hardcoded,
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings_outlined),
@@ -96,7 +96,7 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
               NavigationRailDestination(
                 icon: const Icon(Icons.home_outlined),
                 selectedIcon: const Icon(Icons.home),
-                label: Text('Counter'.hardcoded),
+                label: Text('Home'.hardcoded),
               ),
               NavigationRailDestination(
                   icon: const Icon(Icons.settings_outlined),

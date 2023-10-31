@@ -20,8 +20,17 @@ class _HomeScreenState extends State<HomeScreen> {
     initializeAppState();
   }
 
-  void initializeAppState() {
+  void initializeAppState() async {
     // Perform app initialization
+    debugPrint('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    debugPrint('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+    debugPrint('ready in 1...');
+    await Future.delayed(const Duration(seconds: 1));
+    debugPrint('go!');
+
+    // Remove launch screen
     FlutterNativeSplash.remove();
   }
 
