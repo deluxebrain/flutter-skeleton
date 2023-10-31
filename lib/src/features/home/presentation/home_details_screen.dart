@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutterskeleton/src/l10n/string_hardcoded.dart';
 
-class CounterDetailsScreen extends StatefulWidget {
-  const CounterDetailsScreen({
+class HomeDetailsScreen extends StatefulWidget {
+  const HomeDetailsScreen({
     super.key,
   });
 
   @override
-  State<CounterDetailsScreen> createState() => _CounterDetailsScreenState();
+  State<HomeDetailsScreen> createState() => _HomeDetailsScreenState();
 }
 
-class _CounterDetailsScreenState extends State<CounterDetailsScreen> {
+class _HomeDetailsScreenState extends State<HomeDetailsScreen> {
   int _counter = 0;
 
   @override

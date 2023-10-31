@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutterskeleton/src/l10n/string_hardcoded.dart';
 import 'package:flutterskeleton/src/routing/app_router.dart';
 import 'package:go_router/go_router.dart';
 
-class CounterScreen extends StatelessWidget {
-  const CounterScreen({
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({
     super.key,
-    required this.detailsPath,
   });
 
-  final String detailsPath;
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    initializeAppState();
+  }
+
+  void initializeAppState() {
+    // Perform app initialization
+    FlutterNativeSplash.remove();
+  }
 
   @override
   Widget build(BuildContext context) {

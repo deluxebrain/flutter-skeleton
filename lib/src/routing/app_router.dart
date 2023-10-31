@@ -1,7 +1,7 @@
 // private navigators
 import 'package:flutter/material.dart';
-import 'package:flutterskeleton/src/features/counter/presentation/counter_details_screen.dart';
-import 'package:flutterskeleton/src/features/counter/presentation/counter_screen.dart';
+import 'package:flutterskeleton/src/features/home/presentation/home_details_screen.dart';
+import 'package:flutterskeleton/src/features/home/presentation/home_screen.dart';
 import 'package:flutterskeleton/src/features/settings/presentation/settings_screen.dart';
 import 'package:flutterskeleton/src/routing/scaffold_with_nested_navigation.dart';
 import 'package:go_router/go_router.dart';
@@ -40,13 +40,13 @@ GoRouter goRouter(GoRouterRef ref) {
                   path: '/counter',
                   name: AppRoute.counter.name,
                   pageBuilder: (context, state) => const NoTransitionPage(
-                    child: CounterScreen(detailsPath: '/counter/details'),
+                    child: HomeScreen(),
                   ),
                   routes: [
                     GoRoute(
                       path: 'details',
                       name: AppRoute.counterDetails.name,
-                      builder: (context, state) => const CounterDetailsScreen(),
+                      builder: (context, state) => const HomeDetailsScreen(),
                     ),
                   ],
                 ),
