@@ -33,6 +33,12 @@ E.g:
 ./scripts/configure-firebase "my-project-id" "my-flavor" "my-bundle-id"
 ```
 
+## Thanks to
+
+- The wonderful [Flutter starter architecture](https://github.com/bizz84/starter_architecture_flutter_firebase/tree/master) repo:
+
+  This formed the inspiration for the navigation and adaptive scaffold, as well as the basis for many of the `common_widgets`.
+
 ## Roadmap
 
 - [] Replace Android launch icons with adaptive icon
