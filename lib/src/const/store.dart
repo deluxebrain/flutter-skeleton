@@ -6,4 +6,7 @@ class Store {
 
   static const String keyThemeMode = 'themeMode';
   static const ThemeMode defaultThemeMode = ThemeMode.system;
+
+  static const String keyOnboardingComplete = 'onboardingComplete';
+  static const bool defaultOnboardingComplete = false;
 }

@@ -32,9 +32,13 @@
 - [] Move bug list to GitHub issues
 - [x] Bug list ( see docs/gotchas )
 - [] Use Capitalized flavor names ( e.g. Dev ) ?
-- [] Testflight
-- [] Move router destinations to data and build dynamically
-- [] Move adaptive scaffold breakpoints to configuration
 - [x] App launcher screen
 - [] Script to delete app (flavor) from device
 - [] Look into [device preview](https://pub.dev/packages/device_preview)
+- [] Testflight
+- [] Move router destinations to data and build dynamically
+- [] Move adaptive scaffold breakpoints to configuration
+- [] Workout where to put FlutterNativeSplash.remove();
+- [] Profile screen
+  - [] avatar
+  - [] reset onboarding

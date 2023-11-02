@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterskeleton/bootstrap.dart';
 import 'package:flutterskeleton/config/firebase/prod/firebase_options.dart';
 import 'package:flutterskeleton/src/app.dart';
+import 'package:flutterskeleton/src/features/onboarding/data/onboarding_repository.dart';
 import 'package:flutterskeleton/src/features/settings/data/settings_repository.dart';
 import 'package:flutterskeleton/src/instrumentation/logger.dart';
 import 'package:flutterskeleton/src/instrumentation/logger_firebase.dart';
@@ -28,6 +29,9 @@ Future<ProviderContainer> _buildContainer() async {
     overrides: [
       loggerProvider.overrideWith(
         (ref) => ref.watch(loggerFirebaseProvider),
+      ),
+      onboardingRepositoryProvider.overrideWithValue(
+        OnboardingRepository(sharedPreferences),
       ),
       settingsRepositoryProvider.overrideWithValue(
         SettingsRepository(sharedPreferences),

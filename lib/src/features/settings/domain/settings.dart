@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Settings {
-  Settings({required themeMode}) : _themeMode = themeMode;
+  Settings({
+    required themeMode,
+  }) : _themeMode = themeMode;
 
   Settings copyWith({
     ThemeMode? themeMode,

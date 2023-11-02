@@ -12,11 +12,11 @@ class SettingsRepository {
   final SharedPreferences _sharedPreferences;
 
   Settings getSettings() {
-    return Settings(
-        themeMode: _sharedPreferences.getGeneric(
+    final themeMode = _sharedPreferences.getGeneric(
       Store.keyThemeMode,
       Store.defaultThemeMode,
-    ));
+    );
+    return Settings(themeMode: themeMode);
   }
 
   Future<void> setThemeMode(ThemeMode themeMode) async {

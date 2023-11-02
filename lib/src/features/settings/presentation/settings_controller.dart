@@ -13,12 +13,16 @@ class SettingsController extends _$SettingsController {
   }
 
   void updateSettings({
-    required ThemeMode themeMode,
+    ThemeMode? themeMode,
   }) {
     final settingsRepository = ref.read(settingsRepositoryProvider);
-    final updatedSettings = state.copyWith(themeMode: themeMode);
+    final updatedSettings = state.copyWith(
+      themeMode: themeMode,
+    );
     state = updatedSettings;
     // fire-and-forget
-    settingsRepository.setThemeMode(themeMode);
+    if (themeMode != null) {
+      settingsRepository.setThemeMode(themeMode);
+    }
   }
 }

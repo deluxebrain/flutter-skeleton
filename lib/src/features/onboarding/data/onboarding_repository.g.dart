@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'settings_controller.dart';
+part of 'onboarding_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$settingsControllerHash() =>
-    r'7d4b0ef179b80722e1fbaf7a233062cdade065a1';
+String _$onboardingRepositoryHash() =>
+    r'aaa231ec712d547bf669e2195a79824fd6617105';
 
-/// See also [SettingsController].
-@ProviderFor(SettingsController)
-final settingsControllerProvider =
-    AutoDisposeNotifierProvider<SettingsController, Settings>.internal(
-  SettingsController.new,
-  name: r'settingsControllerProvider',
+/// See also [onboardingRepository].
+@ProviderFor(onboardingRepository)
+final onboardingRepositoryProvider =
+    AutoDisposeProvider<OnboardingRepository>.internal(
+  onboardingRepository,
+  name: r'onboardingRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$settingsControllerHash,
+      : _$onboardingRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SettingsController = AutoDisposeNotifier<Settings>;
+typedef OnboardingRepositoryRef = AutoDisposeProviderRef<OnboardingRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

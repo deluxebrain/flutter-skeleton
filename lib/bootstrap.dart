@@ -28,6 +28,8 @@ Future<void> bootstrap(
 
     registerErrorHandlers(container!);
 
+    FlutterNativeSplash.remove();
+
     runApp(UncontrolledProviderScope(
       container: container!,
       child: await appBuilder(),

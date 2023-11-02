@@ -8,6 +8,12 @@ extension SharedPreferencesX on SharedPreferences {
       debugPrint('SharedPrefs has type: '
           '$key as ${defaultValue.runtimeType}');
 
+      // T is bool
+      if (T.sameTypeAs<T, bool>()) {
+        final bool value = getBool(key) ?? defaultValue as bool;
+        debugPrint('SharedPrefs loaded type bool: $key as $value');
+        return value as T;
+      }
       // T is String
       if (T.sameTypeAs<T, String>()) {
         final String value = getString(key) ?? defaultValue as String;
@@ -37,6 +43,11 @@ extension SharedPreferencesX on SharedPreferences {
 
   Future<void> setGeneric<T>(String key, T value) async {
     try {
+      // T is bool
+      if (T.sameTypeAs<T, bool>()) {
+        await setBool(key, value as bool);
+        debugPrint('SharedPrefs saved type bool: $key as $value');
+      }
       // T is String
       if (T.sameTypeAs<T, String>()) {
         await setString(key, value as String);
