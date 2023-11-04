@@ -14,7 +14,7 @@ Future<void> bootstrap(
   Future<ProviderContainer> Function() containerBuilder,
   FutureOr<Widget> Function() appBuilder,
 ) async {
-  late ProviderContainer? container;
+  late ProviderContainer container;
 
   runZonedGuarded(() async {
     final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -26,17 +26,17 @@ Future<void> bootstrap(
 
     container = await containerBuilder();
 
-    registerErrorHandlers(container!);
+    registerErrorHandlers(container);
 
     FlutterNativeSplash.remove();
 
     runApp(UncontrolledProviderScope(
-      container: container!,
+      container: container,
       child: await appBuilder(),
     ));
   }, (error, stack) {
-    final logger = container?.read(loggerProvider);
-    logger?.recordFatalError(error, stack);
+    final logger = container.read(loggerProvider);
+    logger.recordFatalError(error, stack);
   });
 }
 

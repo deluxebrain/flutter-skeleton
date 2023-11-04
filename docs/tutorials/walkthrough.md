@@ -13,9 +13,17 @@ Including:
 
 Firebase console:
 
+Create project per app flavor:
+
 - skeleton-app-dev
 - skeleton-app-stg
 - skeleton-app-prod
+
+Enable Firebase features:
+
+- Authentication:
+  - Native providers:
+    - Email/Password
 
 ## Update all dependencies
 

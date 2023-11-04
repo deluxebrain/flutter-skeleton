@@ -50,5 +50,36 @@ final authStateChangesProvider = AutoDisposeStreamProvider<User?>.internal(
 );
 
 typedef AuthStateChangesRef = AutoDisposeStreamProviderRef<User?>;
+String _$userChangesHash() => r'575321ad020391ab21763b24cb6ee9a0262947c5';
+
+/// See also [userChanges].
+@ProviderFor(userChanges)
+final userChangesProvider = AutoDisposeStreamProvider<User?>.internal(
+  userChanges,
+  name: r'userChangesProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$userChangesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserChangesRef = AutoDisposeStreamProviderRef<User?>;
+String _$emailVerificationStateChangesHash() =>
+    r'd4efae285f2c150144e8ab73ee456a86376e4698';
+
+/// See also [emailVerificationStateChanges].
+@ProviderFor(emailVerificationStateChanges)
+final emailVerificationStateChangesProvider =
+    AutoDisposeStreamProvider<User>.internal(
+  emailVerificationStateChanges,
+  name: r'emailVerificationStateChangesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$emailVerificationStateChangesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef EmailVerificationStateChangesRef = AutoDisposeStreamProviderRef<User>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

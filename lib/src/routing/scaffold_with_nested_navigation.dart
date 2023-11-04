@@ -62,9 +62,9 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
             label: 'Home'.hardcoded,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.settings_outlined),
-            selectedIcon: const Icon(Icons.settings),
-            label: 'Settings'.hardcoded,
+            icon: const Icon(Icons.person_outlined),
+            selectedIcon: const Icon(Icons.person),
+            label: 'Account'.hardcoded,
           ),
         ],
       ),

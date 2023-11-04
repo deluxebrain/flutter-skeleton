@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterskeleton/src/const/app_sizes.dart';
 import 'package:flutterskeleton/src/features/authentication/data/firebase_auth_repository.dart';
+import 'package:flutterskeleton/src/features/authentication/presentation/auth_providers.dart';
 import 'package:flutterskeleton/src/l10n/string_hardcoded.dart';
-
-import 'auth_providers.dart';
 
 class CustomSignInScreen extends ConsumerWidget {
   const CustomSignInScreen({super.key});
@@ -13,13 +12,29 @@ class CustomSignInScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authProviders = ref.watch(authProvidersProvider);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign in'),
-      ),
-      body: SignInScreen(
-        providers: authProviders,
-        footerBuilder: (context, action) => const SignInAnonymouslyFooter(),
+    return SignInScreen(
+      providers: authProviders,
+      headerBuilder: (context, constraints, shrinkOffset) {
+        return const SignInHeader();
+      },
+      footerBuilder: (context, action) => const SignInAnonymouslyFooter(),
+      sideBuilder: (context, shrinkOffset) {
+        return const SignInHeader();
+      },
+    );
+  }
+}
+
+class SignInHeader extends ConsumerWidget {
+  const SignInHeader({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Padding(
+      padding: const EdgeInsets.all(Sizes.p8),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Image.asset('assets/images/app-icon.png'),
       ),
     );
   }

@@ -1,12 +1,12 @@
 // private navigators
 import 'package:flutter/material.dart';
 import 'package:flutterskeleton/src/features/authentication/data/firebase_auth_repository.dart';
+import 'package:flutterskeleton/src/features/authentication/presentation/custom_profile_screen.dart';
 import 'package:flutterskeleton/src/features/authentication/presentation/custom_sign_in_screen.dart';
 import 'package:flutterskeleton/src/features/home/presentation/home_details_screen.dart';
 import 'package:flutterskeleton/src/features/home/presentation/home_screen.dart';
 import 'package:flutterskeleton/src/features/onboarding/data/onboarding_repository.dart';
 import 'package:flutterskeleton/src/features/onboarding/presentation/onboarding_screen.dart';
-import 'package:flutterskeleton/src/features/settings/presentation/settings_screen.dart';
 import 'package:flutterskeleton/src/routing/go_router_refresh_stream.dart';
 import 'package:flutterskeleton/src/routing/scaffold_with_nested_navigation.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +23,6 @@ enum AppRoute {
   signIn,
   counter,
   counterDetails,
-  settings,
   profile,
 }
 
@@ -33,7 +32,7 @@ GoRouter goRouter(GoRouterRef ref) {
   final onboardingRepository = ref.watch(onboardingRepositoryProvider);
 
   return GoRouter(
-      initialLocation: '/signin',
+      initialLocation: '/signIn',
       navigatorKey: _rootNavigatorKey,
       debugLogDiagnostics: true,
       redirect: (context, state) {
@@ -54,6 +53,8 @@ GoRouter goRouter(GoRouterRef ref) {
             return '/signIn';
           }
         }
+
+        // no redirect
         return null;
       },
       refreshListenable:
@@ -103,10 +104,10 @@ GoRouter goRouter(GoRouterRef ref) {
               navigatorKey: _settingsNavigatorKey,
               routes: [
                 GoRoute(
-                  path: '/settings',
-                  name: AppRoute.settings.name,
+                  path: '/account',
+                  name: AppRoute.profile.name,
                   pageBuilder: (context, state) => const NoTransitionPage(
-                    child: SettingsScreen(),
+                    child: CustomProfileScreen(),
                   ),
                 ),
               ],

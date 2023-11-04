@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -9,6 +11,10 @@ class AuthRepository {
 
   Stream<User?> authStateChanges() {
     return _auth.authStateChanges();
+  }
+
+  Stream<User?> userChanges() {
+    return _auth.userChanges();
   }
 
   User? get currentUser {
@@ -33,4 +39,32 @@ AuthRepository authRepository(AuthRepositoryRef ref) {
 @riverpod
 Stream<User?> authStateChanges(AuthStateChangesRef ref) {
   return ref.watch(authRepositoryProvider).authStateChanges();
+}
+
+@riverpod
+Stream<User?> userChanges(UserChangesRef ref) {
+  return ref.watch(authRepositoryProvider).userChanges();
+}
+
+@riverpod
+Stream<User> emailVerificationStateChanges(
+    EmailVerificationStateChangesRef ref) async* {
+  final authRepository = ref.watch(authRepositoryProvider);
+  User? currentUser = authRepository.currentUser;
+
+  if (currentUser == null ||
+      currentUser.isAnonymous ||
+      currentUser.emailVerified) {
+    return;
+  }
+
+  while (currentUser != null && !currentUser.emailVerified) {
+    await Future.delayed(const Duration(seconds: 1));
+    await currentUser.reload();
+    currentUser = authRepository.currentUser;
+
+    if (currentUser != null && currentUser.emailVerified) {
+      yield currentUser;
+    }
+  }
 }

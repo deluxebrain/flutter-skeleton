@@ -21,6 +21,20 @@ The target `install` in the makefile can be used to perform these steps:
 make install
 ```
 
+### Firebase console
+
+Create project per app flavor:
+
+- skeleton-app-dev
+- skeleton-app-stg
+- skeleton-app-prod
+
+Enable Firebase features:
+
+- Authentication:
+  - Native providers:
+    - Email/Password
+
 ### Firebase configuration
 
 Configure firebase according to [these instructions](./docs/firebase-crashlytics.md#configuring-firebase-and-crashlytics-with-flavors).
@@ -45,3 +59,4 @@ E.g:
 - [] Work out how to have APP_NAME with spaces in it
 - [] Support for deep linking, with and without auth
 - [] Notifications
+- [] adatpy vs revenuecat [adapty](https://www.youtube.com/watch?v=oRS-HtAYqI4)

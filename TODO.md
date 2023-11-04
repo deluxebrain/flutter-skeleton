@@ -42,3 +42,23 @@
 - [] Profile screen
   - [] avatar
   - [] reset onboarding
+  - [] logout
+- [] Flavor specific app configuration
+  - [] allow anonymous login on dev only
+- [] Can settings be removed when onboarding all built out ?
+- [] Does firebase support subscriptions ?
+- [] Firebase analytics
+  - [] first time opening app
+  - [] onboarding completion
+- [] Custom widgets
+  - [] button color
+- [x] Signup page issues around keyboard not showing up
+  - [x] Test on physical device and verify keyboard shows
+- [] Redirect to profile or email verification after signup
+- [] Custom profile page to include unsetting onboarding complete
+  - [] https://github.com/firebase/FirebaseUI-Flutter/issues/40
+  - [] or reset onboarding complete after signup ?
+  - [] what even is onboarding ?
+- [] Bug with profile screen barfing on account delete if session timed out
+- [] Bug with login incorrect password
+  - [] https://github.com/firebase/flutterfire/issues/11713
