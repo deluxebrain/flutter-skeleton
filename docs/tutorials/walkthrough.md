@@ -267,7 +267,7 @@ buildTypes ...
 
 ### Create common configurations settings file
 
-- Runner --> right click --> New File --> Configuration Settings File
+- Runner --> Flutter --> right click --> New File --> Configuration Settings File
   Name as: common.xcconfig
   Save to ios/Flutter
   Group: Runner
@@ -429,9 +429,14 @@ dev:
 ## Firebase configuration
 
 ```sh
+firebase login
+firebase projects:list
+```
+
+```sh
 ./scripts/configure-firebase {dev-project-id} dev com.example.app.dev
-./scripts/configure-firebase {stg-project-id} dev com.example.app.stg
-./scripts/configure-firebase {prod-project-id} dev com.example.app
+./scripts/configure-firebase {stg-project-id} stg com.example.app.stg
+./scripts/configure-firebase {prod-project-id} prod com.example.app
 ```
 
 Verify the following files are created:

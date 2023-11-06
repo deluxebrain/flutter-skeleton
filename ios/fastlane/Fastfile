@@ -1,13 +1,15 @@
 default_platform(:ios)
 
 platform :ios do
+
   lane :development do
     build_app(
       scheme: "dev",
       configuration: "Debug-dev",
       clean: true,
       output_directory: "../build/fastlane/ios",
-      xcargs: "OTHER_CFLAGS=""-Wno-deprecated-builtins"""
+      xcargs: "OTHER_CFLAGS=""-Wno-deprecated-builtins""")
+  end
 
   lane :release do
     disable_automatic_code_signing
