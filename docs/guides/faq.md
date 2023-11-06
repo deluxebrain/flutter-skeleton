@@ -31,7 +31,7 @@ The following command will show recent file changes, and can help with debugging
 find . -mmin -5 -type f -exec ls -l {} +
 ```
 
-## Looking up bundle ids
+## Looking up bundle ids within code
 
 ### ios
 
@@ -48,3 +48,12 @@ e.g:
 android/app/build.gradle
 ::applicationId
 ::applicationIdSuffix
+
+## Finding bundle id of app in app store
+
+- Connect iPhone to mac
+- Open `Console` app on mac
+- Select the iPhone within the devices list in console
+- Open app on iPhone
+- Search for the app name
+- Search the filtered log messages for the bundle id
