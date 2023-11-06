@@ -1,5 +1,71 @@
 # Build
 
+NOTE this guide is focused on iOS targets.
+
+## CLI build tools
+
+Regardless of how builds are orchestrated ( xcode, flutter build, fastlane, etc) the build will be performed using `xcodebuild`.
+
+> However, each will use xcodebuild in a slightly different way which can cause confusion.
+
+When `flutter build` calls `xcodebuild` it hides all the build output, and just reports orchestration events and errors.
+
+When `fastlane ios` calls `xcodebuild` it ( by default ) shows all the build output, as well as orchestration events and errors.
+
+Due to the complexity of flutter, calling into pods which depends on c++ libraries, etc, etc, the build output will often contain ( lots ) of compiler warnings. To be explicit:
+
+> fastlane will show the compiler warnings whereas flutter build will not
+
+Note that neither flutter nor fastlane are configured to treat warnings as errors.
+
+## Dealing with compiler warnings
+
+Although fastlane does not treat warnings as errors, in certain situations warnings effectively break the build.
+
+For example, bringing in `firestore` dependencies ( as of time of writing ) bring in the `abseil` framework ( via the abseil pod ) which leads to the following warnings being generated. Note that this warnings are so numerous so as the slow the build times down to a point where it is effectively broken.
+
+```sh
+[15:19:57]: ▸ ⚠️  /Users/deluxebrain/Library/Developer/Xcode/DerivedData/Runner-gzrfilvdjgmhdzgxofaluqqacrfw/Build/Intermediates.noindex/ArchiveIntermediates/Runner/BuildProductsPath/Release-iphoneos/abseil/absl.framework/Headers/meta/type_traits.h:301:36: builtin __has_trivial_destructor is deprecated; use __is_trivially_destructible instead [-Wdeprecated-builtins]
+[15:19:57]: ▸     : std::integral_constant<bool, __has_trivial_destructor(T) &&
+[15:19:57]: ▸
+```
+
+Fastlane provides two approaches to dealing with this.
+
+### Silencing all xcodebuild output
+
+There is an argument for just silencing all xcodebuild output as this is what flutter appears todo.
+
+This can be done as follows:
+
+```ruby
+lane :development do
+  build_app(
+    suppress_xcode_output: true,
+    scheme: "Runner",
+    configuration: "Debug")
+end
+```
+
+### Turn off specific compiler warnings
+
+Alternatively, the offending warning can be silenced by passing it through as a compiler option.
+
+For example, the above warning output shows that it is being generated due to the `-Wdeprecated-builtins` compiler flag being set.
+
+These can be overridden using the `no` version, in this case `-Wno-deprecated-builtins`.
+
+This can be done as follows:
+
+```ruby
+lane :development do
+  build_app(
+    xcargs: "OTHER_CFLAGS=""-Wno-deprecated-builtins""",
+    scheme: "Runner",
+    configuration: "Release")
+end
+```
+
 ## Build artecfacts
 
 Build artefacts and locations are dependent on how the build was performed:
@@ -31,6 +97,10 @@ build/
 ```
 
 ### fastlane
+
+Fastlane will by default stick build artefacts in the cwd.
+
+Override this using the `output_directory` config element;
 
 ```sh
 # output_directory: "../build/fastlane/ios"

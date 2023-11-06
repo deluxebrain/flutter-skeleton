@@ -137,7 +137,7 @@ Xcode --> Settings --> Accounts:
 Runner --> Targets --> Runner --> Signing & Capabilities --> Signing:
 
 - Automatically manage signing: Y
-- Team: Personal Team
+- Team: { Team Name }
 
 Note: Bundle identifier will need to be globally unique
 
@@ -175,16 +175,10 @@ platform :ios do
   lane :development do
     build_app(
       scheme: "Runner",
-      configuration: "Debug")
-  end
-
-  lane :release do
-    disable_automatic_code_signing
-    build_app(
-      scheme: "Runner",
-      configuration: "Release")
-    enable_automatic_code_signing
-    upload_to_testflight
+      configuration: "Debug",
+      clean: true,
+      output_directory: "../build/fastlane/ios"
+      suppress_xcode_output: true)
   end
 end
 ```
@@ -490,7 +484,9 @@ platform :ios do
     build_app(
       scheme: "dev",
       configuration: "Debug-dev",
-      output_directory: "../build/fastlane/ios")
+      clean: true,
+      output_directory: "../build/fastlane/ios",
+      xcargs: "OTHER_CFLAGS=""-Wno-deprecated-builtins""")
   end
 
   lane :release do
@@ -498,7 +494,9 @@ platform :ios do
     build_app(
       scheme: "prod",
       configuration: "Release-prod",
-      output_directory: "../build/fastlane/ios")
+      clean: true,
+      output_directory: "../build/fastlane/ios",
+      xcargs: "OTHER_CFLAGS=""-Wno-deprecated-builtins""")
     enable_automatic_code_signing
     upload_to_testflight
   end

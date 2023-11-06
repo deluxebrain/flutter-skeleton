@@ -5,15 +5,18 @@ platform :ios do
     build_app(
       scheme: "dev",
       configuration: "Debug-dev",
-      output_directory: "../build/fastlane/ios")
-  end
+      clean: true,
+      output_directory: "../build/fastlane/ios",
+      xcargs: "OTHER_CFLAGS=""-Wno-deprecated-builtins"""
 
   lane :release do
     disable_automatic_code_signing
     build_app(
       scheme: "prod",
       configuration: "Release-prod",
-      output_directory: "../build/fastlane/ios")
+      clean: true,
+      output_directory: "../build/fastlane/ios",
+      xcargs: "OTHER_CFLAGS=""-Wno-deprecated-builtins""")
     enable_automatic_code_signing
     upload_to_testflight
   end
