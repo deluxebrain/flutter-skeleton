@@ -120,6 +120,10 @@ X_FLAVOR_LAUNCH_SCREEN=LaunchScreenDev
 - Runner --> Runner --> Info.plist:
   - Launch screen interface file base name: $(X_FLAVOR_LAUNCH_SCREEN)
 
+For some reason you also need to delete the original launch screen image set or flutter build complains that the app uses the default launch screen:
+
+- ios/Runner/Assets/xcassets/LaunchImage.imageset
+
 ## Code changes
 
 No code changes required unless you want support for holding the launch image during app initialization.

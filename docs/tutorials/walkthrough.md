@@ -123,7 +123,10 @@ ios/Flutter/AppFrameworkInfo.plist:
 ```
 
 xcode:
-Runner --> Targets --> Runner --> Minimum Deployments: iOS 12.0
+
+- Runner --> Targets --> Runner:
+  - General:
+    - Minimum Deployments: iOS 12.0
 
 ## Code signing
 
@@ -131,13 +134,15 @@ Xcode --> Settings --> Accounts:
 
 - Add apple developer account
 - Manage Certificates:
+
   - Add Apple Development Certificate
   - Add Apple Distribution Certificate
 
-Runner --> Targets --> Runner --> Signing & Capabilities --> Signing:
-
-- Automatically manage signing: Y
-- Team: { Team Name }
+- Runner --> Targets --> Runner:
+  - Signing & Capabilities:
+    - Signing:
+      - Automatically manage signing: Y
+      - Team: { Team Name }
 
 Note: Bundle identifier will need to be globally unique
 
@@ -177,7 +182,7 @@ platform :ios do
       scheme: "Runner",
       configuration: "Debug",
       clean: true,
-      output_directory: "../build/fastlane/ios"
+      output_directory: "../build/fastlane/ios",
       suppress_xcode_output: true)
   end
 end
@@ -575,13 +580,14 @@ The following files are created:
 
 ```text
 android\
-  src\
-    dev\
-      res\
-    stg\
-      res\
-    prod\
-      res\
+  app\
+    src\
+      dev\
+        res\
+      stg\
+        res\
+      prod\
+        res\
 ios\
   Runner\
     Base.lproj\
@@ -618,10 +624,14 @@ X_FLAVOR_LAUNCH_SCREEN=LaunchScreenDev
 - Runner --> Runner --> Info.plist:
   - Launch screen interface file base name: $(X_FLAVOR_LAUNCH_SCREEN)
 
+For some reason you also need to delete the original launch screen image set or flutter build complains that the app uses the default launch screen:
+
+- ios/Runner/Assets/xcassets/LaunchImage.imageset
+
 ## Verify flavors will build
 
 ```sh
-flutter build ipa --flavor stg -t ./lib/main_dev.dart
+flutter build ipa --flavor dev -t ./lib/main_dev.dart
 flutter build ipa --flavor stg -t ./lib/main_stg.dart
 flutter build ipa --flavor prod -t ./lib/main_prod.dart
 flutter build appbundle --flavor dev -t ./lib/main_dev.dart
