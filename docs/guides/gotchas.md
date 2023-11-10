@@ -53,13 +53,29 @@ Ref: [https://github.com/flutter/flutter/issues/128739]
 
 - Runner --> Targets --> Build Settings --> Build Options --> User Script Sandboxing --> No
 
-## Full project clean
+## Build breaks after updating flutter dependencies
 
-```sh
-flutter clean
-rm pubspec.lock ios/Podfile.lock
-rm -rf ios/Pods
-rm -rf ios/Runner.xcworkspace # ? Not sure about this one
-flutter pub get
-flutter build
-```
+Appears to happen when using dependencies that aren't native dart ( e.g. Firebase components ).
+
+- Perform full project clean:
+
+  ```sh
+  flutter clean
+
+  rm pubspec.lock ios/Podfile.lock
+  rm -rf ios/Pods
+  ```
+
+- Ensure have right version of ffi
+
+  ```sh
+  gem uninstall ffi
+  gem install ffi -- --enable-libffi-alloc
+  ```
+
+- Update pods package repo
+
+  ```sh
+  cd ios
+  pod repo update
+  ```

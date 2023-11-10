@@ -1,5 +1,17 @@
 # FAQ
 
+## Performing full project clean
+
+```sh
+flutter clean
+
+rm pubspec.lock ios/Podfile.lock
+rm -rf ios/Pods
+
+flutter pub get
+flutter build
+```
+
 ## Upgrading flutter version
 
 ```sh
