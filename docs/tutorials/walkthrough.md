@@ -79,6 +79,7 @@ scripts/
   configure-firebase
 .editorconfig
 .gitignore (*)
+analysis_options.yaml
 l10n.yaml
 pubspec.yaml*
 Makefile

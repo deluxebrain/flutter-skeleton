@@ -61,3 +61,22 @@ The following files will be created:
 - ios/Runner/GoogleService-Info.plist
 
 The `Copy Bundle Resources` build phase will be updated to include `GoogleService-Info.plist`.
+
+## Using precompiled Firestore files to speed up xcode build times
+
+Build times go through the roof when you add `cloud_firestore`.
+This is because it references C++ code that is compiled locally as part of the xcode build process.
+
+Build times can be reduced by using precompiled [firestore files](https://github.com/invertase/firestore-ios-sdk-frameworks).
+
+To use:
+
+- Perform a build as usual to generate your Podfile.lock file
+- Get the firestore version being used from your Podfile.lock file
+- Reference the firestore version in your Podfile file as follows:
+
+```ruby
+target 'Runner' do
+  # Assuming v10.17.0
+  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '10.17.0'
+```
